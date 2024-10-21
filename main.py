@@ -4,14 +4,14 @@ import sys
 from button import Button
 pg.init() 
 
-BG = pg.image.load("./assets/Background.png")
+BG = pg.image.load("../assets/Background.png")
 
-PLAY_BUTTON = Button(image=pg.image.load("./assets/Play Rect.png"), pos=(640, 250), 
-                    text_input="PLAY", font=pg.font.Font("./assets/font.ttf", 75), base_color="#d7fcd4", hovering_color="White")
-OPTIONS_BUTTON = Button(image=pg.image.load("./assets/Options Rect.png"), pos=(640, 400), 
-                    text_input="OPTIONS", font=pg.font.Font("./assets/font.ttf", 75), base_color="#d7fcd4", hovering_color="White")
-QUIT_BUTTON = Button(image=pg.image.load("./assets/Quit Rect.png"), pos=(640, 550), 
-                    text_input="QUIT", font=pg.font.Font("./assets/font.ttf", 75), base_color="#d7fcd4", hovering_color="White")
+PLAY_BUTTON = Button(image=pg.image.load("../assets/Play Rect.png"), pos=(640, 250), 
+                    text_input="PLAY", font=pg.font.Font("../assets/font.ttf", 75), base_color="#d7fcd4", hovering_color="White")
+OPTIONS_BUTTON = Button(image=pg.image.load("../assets/Options Rect.png"), pos=(640, 400), 
+                    text_input="OPTIONS", font=pg.font.Font("../assets/font.ttf", 75), base_color="#d7fcd4", hovering_color="White")
+QUIT_BUTTON = Button(image=pg.image.load("../assets/Quit Rect.png"), pos=(640, 550), 
+                    text_input="QUIT", font=pg.font.Font("../assets/font.ttf", 75), base_color="#d7fcd4", hovering_color="White")
 
 
 class Player():
@@ -162,7 +162,7 @@ class Enemy():
 
 
 def get_font(size): 
-    return pg.font.Font("./assets/font.ttf", size)
+    return pg.font.Font("../assets/font.ttf", size)
   
 class States(object):
     def __init__(self):
@@ -204,7 +204,7 @@ class Menu(States):
         screen.blit(BG, (0, 0))
 
         print(self.mousePos)
-        MENU_TEXT = pg.font.Font("./assets/font.ttf", 100).render("MAIN MENU", True, "#b68f40")
+        MENU_TEXT = pg.font.Font("../assets/font.ttf", 100).render("MAIN MENU", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
         screen.blit(MENU_TEXT, MENU_RECT)
         for button in self.buttons:
@@ -215,7 +215,7 @@ class Game(States):
     def __init__(self):
         States.__init__(self)
         self.next = 'menu'
-        self.assets_dir = os.path.join("./assets")
+        self.assets_dir = os.path.join("../assets")
         self.grass_img = pg.image.load(os.path.join(self.assets_dir, "map", "grass.png"))
         self.sprite_dir = os.path.join(self.assets_dir, "sprites")
         self.font_dir = os.path.join(self.assets_dir, "font")
@@ -230,7 +230,7 @@ class Game(States):
 
     def load_audio(self):
         pg.mixer.init()  
-        pg.mixer.music.load(os.path.join("./assets", "background_music.mp3")) 
+        pg.mixer.music.load(os.path.join("../assets", "background_music.mp3")) 
         pg.mixer.music.set_volume(0.5)  
         pg.mixer.music.play(-1)  
 
@@ -242,7 +242,7 @@ class Game(States):
         self.enemies.append(Enemy(self, 700, 400))
 
     def update(self, screen, dt):
-        screen.fill("./#ffffff")
+        screen.fill("../#ffffff")
         self.player.update(0.03, self.actions)
 
         for enemy in self.enemies:
@@ -334,7 +334,7 @@ class Control:
         self.state.update(self.screen, dt)
 
     def load_assets(self):
-        self.assets_dir = os.path.join("./assets")
+        self.assets_dir = os.path.join("../assets")
         self.sprite_dir = os.path.join(self.assets_dir, "sprites")
         self.font_dir = os.path.join(self.assets_dir, "font")
         self.font=pg.font.Font(os.path.join(self.font_dir, "PressStart2P-vaV7.ttf"), 20)
@@ -359,7 +359,7 @@ class Control:
 #         # PyInstaller creates a temp folder and stores path in _MEIPASS
 #         base_path = sys._MEIPASS
 #     except AttributeError:
-#         base_path = os.path.abspath("./.")
+#         base_path = os.path.abspath("../.")
 
 #     return os.path.join(base_path, relative_path)
 
